@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="weather-container">
+        <canvas id="backgroundCanvas"></canvas>
+        <div class="weather-content">
+            <h1>Weather Information</h1>
+            <form id="weatherForm">
+                <input type="text" id="cityInput" placeholder="Enter City Name" required>
+                <button type="submit">Get Weather</button>
+            </form>
+            <div id="weatherResult" class="weather-result">
+                <!-- Weather data will be displayed here -->
+            </div>
+        </div>
+        <div class="company-info">
+            <h2>About Filament Solutions Pvt Ltd</h2>
+            <p>Providing sustainable and energy-efficient lighting solutions for a brighter future. Our LED products are designed for home, office, and industrial use.</p>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

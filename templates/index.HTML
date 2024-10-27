@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <canvas id="backgroundCanvas"></canvas>
+        <div class="content">
+            <h1>Weather App</h1>
+            <form id="weatherForm">
+                <input type="text" id="city" placeholder="Enter City Name" required>
+                <button type="submit">Get Weather</button>
+            </form>
+            <div id="weatherResult"></div>
+            <div class="company-info">
+                <h2>About Filament Solutions Pvt Ltd</h2>
+                <p>We provide innovative lighting solutions with a focus on energy efficiency and design.</p>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+
+
