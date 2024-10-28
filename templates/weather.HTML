@@ -7,24 +7,44 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+    <!-- Navigation Menu -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/weather">Weather</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Full-Screen Canvas for Animation -->
+    <canvas id="animationCanvas"></canvas>
+
+    <!-- Weather Information -->
     <div class="weather-container">
-        <canvas id="backgroundCanvas"></canvas>
-        <div class="weather-content">
-            <h1>Weather Information</h1>
-            <form id="weatherForm">
-                <input type="text" id="cityInput" placeholder="Enter City Name" required>
-                <button type="submit">Get Weather</button>
-            </form>
-            <div id="weatherResult" class="weather-result">
-                <!-- Weather data will be displayed here -->
-            </div>
+        <h1>Check Weather Information</h1>
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">Get Weather</button>
+        </form>
+
+        {% if weather %}
+        <div class="weather-info">
+            <h2>Weather in {{ weather.city }}</h2>
+            <p>Time: {{ weather.time }}</p>
+            <p>Temperature: {{ weather.temperature }}°C</p>
+            <p>Wind Speed: {{ weather.wind_speed }} m/s</p>
+            <p>Description: {{ weather.description }}</p>
+            <p>Risk Level: {{ weather.risk }}</p>
         </div>
-        <div class="company-info">
-            <h2>About Filament Solutions Pvt Ltd</h2>
-            <p>Providing sustainable and energy-efficient lighting solutions for a brighter future. Our LED products are designed for home, office, and industrial use.</p>
-        </div>
+        {% elif error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
     </div>
+
+    <!-- JavaScript File -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
+
 

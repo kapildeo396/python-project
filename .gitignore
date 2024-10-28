@@ -1,4 +1,31 @@
-__pycache__/
-*.pyc
-.DS_Store
-venv/
+# Ignore system files
+.gitconfig
+NTUSER.DAT
+ntuser.ini
+
+# Ignore IDE configurations
+.vscode/
+
+# Ignore temporary and cached files
+.lesshst
+
+# Ignore directories
+AppData/
+Desktop/
+Downloads/
+Pictures/
+Saved Games/
+Videos/
+
+# Ignore other specific files
+_netrc
+# Ignore system directories
+AppData/
+Cookies/
+Local Settings/
+My Documents/
+Recent/
+SendTo/
+Start Menu/
+Templates/
+

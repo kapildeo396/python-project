@@ -3,28 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title>Home - Weather App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="container">
-        <canvas id="backgroundCanvas"></canvas>
-        <div class="content">
-            <h1>Weather App</h1>
-            <form id="weatherForm">
-                <input type="text" id="city" placeholder="Enter City Name" required>
-                <button type="submit">Get Weather</button>
-            </form>
-            <div id="weatherResult"></div>
-            <div class="company-info">
-                <h2>About Filament Solutions Pvt Ltd</h2>
-                <p>We provide innovative lighting solutions with a focus on energy efficiency and design.</p>
-            </div>
-        </div>
+    <!-- Navigation Menu -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/weather">Weather</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Full-Screen Canvas for Animation -->
+    <canvas id="animationCanvas"></canvas>
+
+    <!-- Home Screen with Weather Search -->
+    <div class="home-container">
+        <h1>Welcome to the Weather App</h1>
+        <p>Search for the current weather in your city:</p>
+        <form method="POST" action="/weather">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">Search Weather</button>
+        </form>
     </div>
+
+    <!-- JavaScript File -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
+
 
 
 

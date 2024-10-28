@@ -1,54 +1,82 @@
-const canvas = document.getElementById('backgroundCanvas');
-const ctx = canvas.getContext('2d');
+document.addEventListener("DOMContentLoaded", function () {
+    // Get canvas and set context
+    const canvas = document.getElementById('animationCanvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+    // Resize canvas when window size changes
+    window.addEventListener('resize', function () {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    });
 
-// Function to create background animation
-function animateBackground() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    gradient.addColorStop(0, 'rgba(0, 102, 204, 0.5)');
-    gradient.addColorStop(1, 'rgba(0, 0, 0, 0.5)');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Define particles for animation
+    const particles = [];
+    const colors = ['#00d4ff', '#ffffff', '#ff4081', '#a3ff00']; // Colors for particles
 
-    for (let i = 0; i < 50; i++) {
-        ctx.beginPath();
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const radius = Math.random() * 2 + 1;
-        ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-        ctx.fill();
+    // Create particle object
+    function Particle(x, y, size, color, velocityX, velocityY) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.color = color;
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
+
+        // Update particle position
+        this.update = function () {
+            this.x += this.velocityX;
+            this.y += this.velocityY;
+
+            // Create a wrap-around effect
+            if (this.x > width) this.x = 0;
+            if (this.x < 0) this.x = width;
+            if (this.y > height) this.y = 0;
+            if (this.y < 0) this.y = height;
+
+            this.draw();
+        };
+
+        // Draw the particle on canvas
+        this.draw = function () {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+            ctx.closePath();
+        };
     }
 
-    requestAnimationFrame(animateBackground);
-}
+    // Initialize particles
+    function initParticles() {
+        particles.length = 0;
+        const particleCount = 100; // Number of particles
 
-// Start animation
-animateBackground();
+        for (let i = 0; i < particleCount; i++) {
+            const size = Math.random() * 4 + 1; // Random size between 1 and 5
+            const x = Math.random() * width;
+            const y = Math.random() * height;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const velocityX = (Math.random() - 0.5) * 2; // Random horizontal speed
+            const velocityY = (Math.random() - 0.5) * 2; // Random vertical speed
 
-// Handle weather form submission
-document.getElementById('weatherForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const city = document.getElementById('city').value;
-    fetch(`/weather?city=${city}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                document.getElementById('weatherResult').innerText = data.error;
-            } else {
-                document.getElementById('weatherResult').innerText = `
-                    Weather in ${data.name}: ${data.weather}
-                    Temperature: ${data.main.temp} °C
-                    Humidity: ${data.main.humidity}%
-                    Wind Speed: ${data.wind.speed} m/s
-                `;
-            }
-        })
-        .catch(error => {
-            document.getElementById('weatherResult').innerText = "Error fetching weather data.";
+            particles.push(new Particle(x, y, size, color, velocityX, velocityY));
+        }
+    }
+
+    // Animation loop
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        particles.forEach((particle) => {
+            particle.update();
         });
+
+        requestAnimationFrame(animate);
+    }
+
+    // Initialize and start the animation
+    initParticles();
+    animate();
 });
