@@ -47,6 +47,12 @@ def weather():
 
     return render_template('weather.html')
 
+import os
+
+# Retrieve the port number from the "PORT" environment variable; if it's not set, use 5000 as the default port
+port = int(os.environ.get("PORT", 5000))
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
+
+
 
