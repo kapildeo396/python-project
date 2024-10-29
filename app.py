@@ -49,8 +49,8 @@ def weather():
 
 import os
 
-# Retrieve the port number from the "PORT" environment variable; if it's not set, use 5000 as the default port
-port = int(os.environ.get("PORT", 5000))
+# Retrieve the port number from the "PORT" environment variable; if it's not set, use 10000 as the default port
+port = int(os.environ.get("PORT", 10000))
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port, debug=True)
 
