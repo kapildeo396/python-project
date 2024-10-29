@@ -15,6 +15,13 @@ api_key = "035e68154035049697c3ea7fb7531c20"
 
 @app.route('/')
 def home():
+    try:
+        return render_template('index.html')
+    except TemplateNotFound:
+        return "<h1>Template Not Found</h1>", 404
+
+@app.route('/')
+def home():
     # Debugging ke liye current working directory print karna
     print("Current working directory:", os.getcwd())
     logging.debug("Navigating to home page.")  # Log message
