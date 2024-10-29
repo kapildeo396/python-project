@@ -1,0 +1,138 @@
+/* Reset some basic styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevent scroll for full-screen animation */
+    color: #ffffff;
+}
+
+/* Full-screen animation background */
+#animationCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Send canvas to the background */
+    background: linear-gradient(135deg, #3b8d99, #6b4f92);
+}
+
+/* Navigation menu styling */
+.main-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    z-index: 1000;
+}
+
+.main-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.main-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: #00d4ff;
+}
+
+/* Home screen container styling */
+.home-container, .weather-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding-top: 100px;
+}
+
+.home-container input[type="text"], .weather-container input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.home-container button, .weather-container button {
+    padding: 10px 20px;
+    background-color: #00d4ff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.home-container button:hover, .weather-container button:hover {
+    background-color: #009bb5;
+}
+
+/* Bottom company details styling */
+.company-details {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    z-index: 999;
+}
+
+.company-details h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #00d4ff;
+}
+
+.company-details p {
+    margin: 5px 0;
+}
+
+/* Style for the founder's photo */
+.founder-photo {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    margin-top: 10px;
+    border: 3px solid #00d4ff;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+    .main-nav ul {
+        flex-direction: column;
+    }
+
+    .main-nav a {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+
+    .home-container input[type="text"], .weather-container input[type="text"] {
+        width: 80%;
+    }
+
+    .company-details {
+        font-size: 12px;
+    }
+}
+
+

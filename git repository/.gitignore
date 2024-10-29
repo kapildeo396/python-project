@@ -1,0 +1,13 @@
+# Ignore Windows system directories
+AppData/
+Cookies/
+Local Settings/
+Recent/
+SendTo/
+Start Menu/
+My Documents/
+Application Data/
+
+# Ignore specific files
+.gitconfig
+.lesshst
