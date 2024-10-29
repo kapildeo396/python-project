@@ -3,6 +3,7 @@ import requests
 from datetime import datetime
 
 app = Flask(__name__)
+print("Template search path:", app.jinja_loader.searchpath)
 
 # Your OpenWeatherMap API key
 api_key = "035e68154035049697c3ea7fb7531c20"
@@ -49,10 +50,13 @@ def weather():
 
 import os
 
-# Retrieve the port number from the "PORT" environment variable; if it's not set, use 10000 as the default port
-port = int(os.environ.get("PORT", 10000))
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=port, debug=True)
+@app.route("/")
+def home():
+    print("Current working directory:", os.getcwd())  # Working directory print karne ke liye
+    return render_template('index.html')
 
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
