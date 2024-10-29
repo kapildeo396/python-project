@@ -1,15 +1,23 @@
+
 from flask import Flask, render_template, request
 import requests
 from datetime import datetime
+import os
+import logging  # Logging module ko import kar rahe hain
+
+# Logging configuration set kar rahe hain
+logging.basicConfig(filename='error.log', level=logging.DEBUG)
 
 app = Flask(__name__)
-print("Template search path:", app.jinja_loader.searchpath)
 
 # Your OpenWeatherMap API key
 api_key = "035e68154035049697c3ea7fb7531c20"
 
 @app.route('/')
 def home():
+    # Debugging ke liye current working directory print karna
+    print("Current working directory:", os.getcwd())
+    logging.debug("Navigating to home page.")  # Log message
     return render_template('index.html')
 
 @app.route('/weather', methods=['GET', 'POST'])
@@ -40,23 +48,19 @@ def weather():
                 'time': time,
                 'risk': risk
             }
-
+            logging.debug(f"Weather data retrieved: {weather_data}")  # Log the weather data
             return render_template('weather.html', weather=weather_data)
         else:
             error_message = "City not found. Please enter a valid city name."
+            logging.error(f"City not found error for city: {city}")  # Log the error
             return render_template('weather.html', error=error_message)
 
     return render_template('weather.html')
 
-import os
-
-@app.route("/")
-def home():
-    print("Current working directory:", os.getcwd())  # Working directory print karne ke liye
-    return render_template('index.html')
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# Retrieve the port number from the "PORT" environment variable; if it's not set, use 10000 as the default port
+port = int(os.environ.get("PORT", 10000))
+if __name__ == '__main__':
+    logging.info(f"Starting app on port {port}")  # Log app start
+    app.run(host='0.0.0.0', port=port, debug=True)
 
 
