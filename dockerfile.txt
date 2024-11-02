@@ -1,0 +1,18 @@
+# Use the official Python image from the Docker Hub
+from python:3.8-slim
+
+# Set the working directory
+workdir /app
+
+# Copy requirements.txt and install dependencies
+copy requirements.txt .
+run pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of your application code
+copy . .
+
+# Expose the port your app runs on
+expose 5000
+
+# Command to run the application
+cmd ["python", "app.py"]
