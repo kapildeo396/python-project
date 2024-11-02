@@ -1,4 +1,4 @@
-import requests
+import requests # type: ignore
 from datetime import datetime
 
 # Your OpenWeatherMap API key

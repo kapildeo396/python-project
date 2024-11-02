@@ -1,0 +1,88 @@
+# Python Bytecode Files
+__pycache__/
+*.py[cod]
+
+# Environment Folders
+env/
+venv/
+.venv/
+ENV/
+.ENV/
+env.bak/
+venv.bak/
+
+# Environment Configuration Files
+*.env
+*.env.*
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints
+
+# Log Files
+*.log
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Python Package Files
+*.egg-info/
+*.egg
+*.whl
+*.deb
+*.tar.gz
+*.zip
+
+# Virtualenv Folders
+*.venv/
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+
+# IDE and Editor Configurations
+.vscode/
+.idea/
+
+# SQLite Database
+*.sqlite3
+
+# Cache and Temp Files
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Compiled C Extensions
+*.so
+
+# MyPy Cache
+.mypy_cache/
+
+# Coverage Reports
+htmlcov/
+.tox/
+.coverage
+*.cover
+*.py,cover
+.coverage.*
+.cache
+
+# PyInstaller
+# Usually these files are written by a python script from a dev, and we don't want to include them.
+*.manifest
+*.spec
+dist/
+build/
+__pyinstaller_cache/
+
+# Unit Test / Coverage Reports
+.pytest_cache/
+.junit/
+
+# Generated Docs
+docs/_build/
+
+# Sphinx
+docs/_build/

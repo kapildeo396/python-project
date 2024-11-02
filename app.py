@@ -1,11 +1,6 @@
-from flask import Flask, render_template, request  # type: ignore
-import requests  # type: ignore
+from flask import Flask, render_template, request # type: ignore
+import requests # type: ignore
 from datetime import datetime
-import os
-import logging  # Importing logging module
-
-# Setting up logging configuration
-logging.basicConfig(filename='error.log', level=logging.DEBUG)
 
 app = Flask(__name__)
 
@@ -14,13 +9,7 @@ api_key = "035e68154035049697c3ea7fb7531c20"
 
 @app.route('/')
 def home():
-    try:
-        # Printing the current working directory for debugging
-        print("Current working directory:", os.getcwd())
-        logging.debug("Navigating to home page.")  # Log message
-        return render_template('index.html')
-    except TemplateNotFound:
-        return "<h1>Template Not Found</h1>", 404
+    return render_template('index.html')
 
 @app.route('/weather', methods=['GET', 'POST'])
 def weather():
@@ -48,27 +37,12 @@ def weather():
                 'time': time,
                 'risk': risk
             }
-<<<<<<< HEAD
-            logging.debug(f"Weather data retrieved: {weather_data}")  # Log the weather data
-=======
->>>>>>> 0cd190137897d103c945c4b23a6789643dd0a9d1
             return render_template('weather.html', weather=weather_data)
         else:
             error_message = "City not found. Please enter a valid city name."
-            logging.error(f"City not found error for city: {city}")  # Log the error
             return render_template('weather.html', error=error_message)
 
     return render_template('weather.html')
 
-# Retrieve the port number from the "PORT" environment variable; default to 10000 if not set
-port = int(os.environ.get("PORT", 10000))
 if __name__ == '__main__':
-<<<<<<< HEAD
-    logging.info(f"Starting app on port {port}")  # Log app start
-    app.run(host='0.0.0.0', port=port, debug=True)
-
-
-
-=======
     app.run(debug=True)
->>>>>>> 0cd190137897d103c945c4b23a6789643dd0a9d1
